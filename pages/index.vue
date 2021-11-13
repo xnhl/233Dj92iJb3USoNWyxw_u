@@ -1,15 +1,8 @@
 <template>
 	<div id="page">
 		<div id="prompt-wrapper" v-if="triesRemaining">
-			<div id="checks">
-				<div class="check">
-					<input type="checkbox" name="show" id="show">
-					<label class="check-label" for="show">show</label>
-				</div>
-				<div class="check">
-					<input type="checkbox" name="save" id="save">
-					<label class="check-label" for="save">save</label>
-				</div>
+			<div id="wanderer">
+				<img id="wanderer-image" src="/img/w.jpg" alt="wanderer">
 			</div>
 			<input type="text" name="p" id="search" @keyup.enter="decrypt">
 			<p id="remaining" v-text="remaining"></p>
@@ -97,9 +90,9 @@ export default {
 		margin: 0 auto
 		@include flexCenter
 		flex-direction: column
-		margin-top: calc(5rem + 10vw)
+		margin-top: calc(1rem + 5vw)
 		@media (min-width: 40rem)
-			margin-top: calc(15rem + 10vw)
+			margin-top: calc(5rem + 5vw)
 		#search
 			width: 100%
 			color: black
@@ -109,15 +102,12 @@ export default {
 			line-height: 3rem
 			border-radius: 0.5rem
 		#remaining
-			padding: 0.5rem
-		#checks
-			width: 17rem
-			@include flexCenter
-			.check
-				flex: 1
-				@include flexCenter
-				#show, #save
-					padding: 0.25rem
-				.check-label
-					padding: 0.5rem
+			padding: 1rem
+		#wanderer
+			margin: 2rem
+			#wanderer-image
+				height: 100%
+				width: auto
+				border: 1rem solid rgba(255, 248, 248, 0.9)
+				border-radius: 0.25rem
 </style>

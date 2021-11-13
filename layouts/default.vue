@@ -10,7 +10,7 @@ export default {
 		name: 'fade',
 		duration: 200
 	},
-	head() { return { title: '.' } }
+	head() { return { title: '@' } }
 }
 </script>
 
@@ -36,7 +36,7 @@ html
 	-webkit-text-size-adjust: 100%
 	-moz-osx-font-smoothing: grayscale
 	-webkit-font-smoothing: antialiased
-	font-family: 'Open Sans', 'Roboto', sans-serif
+	font-family: 'Open Sans', sans-serif
 *,
 *:before,
 *:after
