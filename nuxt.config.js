@@ -14,11 +14,7 @@ export default {
           'postcss-responsive-type': {},
           'postcss-hexrgba': {}
         },
-        preset: {
-          autoprefixer: {
-            grid: true
-          }
-        }
+        preset: { autoprefixer: { grid: true } }
       }
     }
   }

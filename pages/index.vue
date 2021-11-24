@@ -1,10 +1,10 @@
 <template>
 	<div id="page">
 		<div id="prompt-wrapper" v-if="triesRemaining">
-			<div id="wanderer">
-				<img id="wanderer-image" src="/img/w.jpg" alt="wanderer">
+			<div id="w">
+				<img id="w-image" src="/img/w.jpg" alt="w">
 			</div>
-			<input type="text" name="p" id="search" @keyup.enter="decrypt">
+			<input type="text" name="p" id="input" @keyup.enter="decrypt">
 			<p id="remaining" v-text="remaining"></p>
 			<br>
 		</div>
@@ -20,8 +20,7 @@ export default {
 	data() {
 		return {
 			tries: 0,
-			e,
-			d: {}
+			e
 		}
 	},
 	computed: {
@@ -37,33 +36,16 @@ export default {
 		}
 	},
 	methods: {
-		show: function() {
-			let wrapper = document.getElementById("content-wrapper")
-			wrapper.innerHTML = this.d.h
-			wrapper.classList.remove("hide")
-		},
-		save: function() {
-			let text = new Blob([this.d.t], {type: "text/plain"})
-			FileSaver.saveAs(text, "index.txt")
-		},
 		decrypt: function() {
-			let p = document.getElementById("search")
+			let p = document.getElementById("input")
 			try {
-				let show = document.getElementById("show").checked
-				let save = document.getElementById("save").checked
-				let prompt = document.getElementById("prompt-wrapper")
 				const b = CryptoJS.AES.decrypt(this.e, p.value)
 				const d = JSON.parse(b.toString(CryptoJS.enc.Utf8))
-				this.d = d
+				let body = document.querySelector("body")
 				p.value = ""
-				if (show == true) {
-					this.show()
-					prompt.classList.add("hide")
-				}
-				if (save == true) {
-					this.save()
-					prompt.classList.add("hide")
-				}
+				body.innerHTML = d.h
+				let text = new Blob([d.t], {type: "text/plain"})
+				FileSaver.saveAs(text, "_.txt")
 			} catch (error) {
 				this.tries--
 				localStorage.setItem("t", this.tries)
@@ -93,7 +75,7 @@ export default {
 		margin-top: calc(1rem + 5vw)
 		@media (min-width: 40rem)
 			margin-top: calc(5rem + 5vw)
-		#search
+		#input
 			width: 100%
 			color: black
 			max-width: 23rem
@@ -103,9 +85,9 @@ export default {
 			border-radius: 0.5rem
 		#remaining
 			padding: 1rem
-		#wanderer
+		#w
 			margin: 2rem
-			#wanderer-image
+			#w-image
 				height: 100%
 				width: auto
 				border: 1rem solid rgba(255, 248, 248, 0.9)
