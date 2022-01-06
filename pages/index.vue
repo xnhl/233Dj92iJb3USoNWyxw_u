@@ -2,13 +2,12 @@
 	<div id="page">
 		<div id="prompt-wrapper" v-if="triesRemaining">
 			<div id="w">
-				<img id="w-image" src="/img/w.jpg" alt="w">
+				<img id="w-image" src="/img/w.png" alt="w">
 			</div>
 			<input type="text" name="p" id="input" @keyup.enter="decrypt">
 			<p id="remaining" v-text="remaining"></p>
 			<br>
 		</div>
-		<div id="content-wrapper" class="hide"></div>
 	</div>
 </template>
 
@@ -67,7 +66,6 @@ export default {
 #page
 	@include pageWrapper
 	background: #000
-	#content-wrapper
 	#prompt-wrapper
 		margin: 0 auto
 		@include flexCenter
@@ -82,7 +80,7 @@ export default {
 			padding: 0.5rem
 			font-size: 3rem
 			line-height: 3rem
-			border-radius: 0.5rem
+			border-radius: 1rem/3rem
 		#remaining
 			padding: 1rem
 		#w
