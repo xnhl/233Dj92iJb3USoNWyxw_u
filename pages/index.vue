@@ -15,12 +15,17 @@
 import CryptoJS from 'crypto-js'
 import FileSaver from 'file-saver'
 import e from '@/static/assets/e.json'
+import countapi from 'countapi-js'
 export default {
-	data() {
-		return {
-			tries: 0,
-			e
-		}
+	async asyncData({ $axios }) {
+		try {
+			// await $axios.$get("https://api.countapi.xyz/hit/DgLBeoZsLFe7wQ5J9OdV1/encrypted")
+			countapi.hit('DgLBeoZsLFe7wQ5J9OdV1', 'encrypted')
+			return {
+				tries: 0,
+				e
+			}
+		} catch (error) {}
 	},
 	computed: {
 		triesRemaining: function() { return this.tries > 0 },

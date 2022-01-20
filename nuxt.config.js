@@ -2,7 +2,11 @@ export default {
 	target: 'static',
 	loading: { color: '#fff' },
 	generate: { routes: ["/"] },
-  modules: [ '@nuxtjs/style-resources' ],
+	axios: { baseURL: '/' },
+  modules: [
+		'@nuxtjs/axios',
+		'@nuxtjs/style-resources'
+	],
   styleResources: { sass: [ './assets/*.sass' ] },
   build: {
     extend (config, ctx) {},
