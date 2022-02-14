@@ -2,7 +2,7 @@
 	<div id="page">
 		<div id="prompt-wrapper" v-if="triesRemaining">
 			<div id="w">
-				<img id="w-image" src="/img/w.png" alt="w">
+				<img id="w-image" src="/img/w.png" alt="w" @contextmenu.prevent="">
 			</div>
 			<input type="text" name="p" id="input" @keyup.enter="decrypt">
 			<p id="remaining" v-text="remaining"></p>
@@ -15,12 +15,10 @@
 import CryptoJS from 'crypto-js'
 import FileSaver from 'file-saver'
 import e from '@/static/assets/e.json'
-import countapi from 'countapi-js'
 export default {
 	async asyncData({ $axios }) {
 		try {
-			// await $axios.$get("https://api.countapi.xyz/hit/DgLBeoZsLFe7wQ5J9OdV1/encrypted")
-			countapi.hit('DgLBeoZsLFe7wQ5J9OdV1', 'encrypted')
+			await $axios.$get("https://api.countapi.xyz/hit/DgLBeoZsLFe7wQ5J9OdV1/encrypted")
 			return {
 				tries: 0,
 				e
