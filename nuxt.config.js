@@ -1,6 +1,6 @@
 export default {
 	target: 'static',
-	loading: { color: '#fff' },
+	loading: { color: 'transparent' },
 	generate: { routes: ["/"] },
 	axios: { baseURL: '/' },
   modules: [
