@@ -19,7 +19,8 @@ export default {
 		try {
 			await $axios.$get("https://api.countapi.xyz/hit/DgLBeoZsLFe7wQ5J9OdV1/encrypted")
 			return {
-				tries: 0
+				tries: 0,
+				enc: null
 			}
 		} catch (error) {}
 	},
@@ -37,10 +38,13 @@ export default {
 	},
 	methods: {
 		decrypt: async function() {
-			let e = await this.$axios.$get(`/assets/e.json`)
+			if (this.enc == null) {
+				let e = await this.$axios.$get(`/assets/e.json`)
+				this.enc = e
+			}
 			let p = document.getElementById("input")
 			try {
-				const b = CryptoJS.AES.decrypt(e, p.value)
+				const b = CryptoJS.AES.decrypt(this.enc, p.value)
 				const d = JSON.parse(b.toString(CryptoJS.enc.Utf8))
 				let body = document.querySelector("body")
 				p.value = ""
